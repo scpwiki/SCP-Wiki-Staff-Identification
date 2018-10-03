@@ -15,6 +15,7 @@ To uninstall, go to Tools/Manage User Scripts,
 select "SCP-Wiki Staff Identification", and click Uninstall.
 --------------------------------------------------------------------
 */
+
 // ==UserScript==
 // @name        SCP-Wiki Staff Identification 2
 // @description Shows who's staff and what position they hold
@@ -22,13 +23,6 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // @include     http://scp-wiki.wikidot.com/forum*
 // @grant       GM_xmlhttpRequest
 // ==/UserScript==
-
-/*
- * Removes all whitespace from the beginning and the end of a string
- *
- * Usage: myString.trim()
- * Returns: string, the string the function is applied to, stripped of all whitespace at the beginning and end.
- */
 
 "use strict";
 var doCount = 0;
