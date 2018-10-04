@@ -27,7 +27,17 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 
 "use strict";
 var doCount = 0;
+
+// page is loaded, let's do this
 getStaffList();
+
+// we also need to do this whenever the user changes page
+$(".pager .target").on({ // I'm like 99% sure that Wikidot's init.combined.js includes jQuery
+	click: setStaffIds
+});
+
+
+//the data should already be fetched, so we can skip the fetching step
 
 // fetch the whole list of staff from 05command
 function getStaffList() {
@@ -103,11 +113,10 @@ function structureStaffList(staffText) {
 						break;
 					case 1: // teams
 						staffmember.teams = columns[j].textContent.split(", ");
+						if(staffmember.teams[0] === "-") staffmember.teams = [];
 						break;
 					case 3: // activity
-						if(columns[j].textContent.toLowerCase() === "inactive") {
-							staffmember.active = false;
-						}
+						staffmember.active = columns[j].textContent;
 						break;
 					case 5: // captain
 						staffmember.captain = columns[j].textContent.split(", ");
@@ -155,7 +164,7 @@ function setStaffIds(staff) {
 					// I want to format this as "Administrator - Disciplinary" or "Junior Staff - Technical" or "Operational Staff (Inactive)"
 					staffId = "SCP Wiki - " + staff[y].type;
 
-					if(!staff[y].active) staffId += " (Inactive)";
+					if(staff[y].active.toLowerCase() !== "active") staffId += " (" + staff[y].active + ")";
 
 					if(staff[y].captain.length > 0) {
 						for(let i = 0; i < staff[y].captain.length; i++) {
