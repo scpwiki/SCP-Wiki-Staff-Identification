@@ -33,9 +33,13 @@ var doCount = 0;
 getStaffList();
 
 // we also need to do this whenever the user changes page
-$(".pager .target").on({ // I'm like 99% sure that Wikidot's init.combined.js includes jQuery
-	click: setStaffIds
-});
+try {
+	jQuery(".pager .target").on({ // I'm like 99% sure that Wikidot's init.combined.js includes jQuery
+		click: setStaffIds
+	});
+} catch(error) {
+	// an error is thrown if there is no page selector, but we don't care, so let's ignore it
+}
 
 
 //the data should already be fetched, so we can skip the fetching step
@@ -104,7 +108,7 @@ function structureStaffList(staffText) {
 				columns.push(td);
 			}
 
-			var staffmember = {username: "", teams: [], active: true, captain: [], type: staffType};
+			var staffmember = {username: "", teams: [], active: "Active", captain: [], type: staffType};
 
 			for(let j = 0; j < columns.length; j++) {
 				switch(j) {
