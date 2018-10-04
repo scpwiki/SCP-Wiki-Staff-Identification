@@ -21,6 +21,7 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // @description Shows who's staff and what position they hold
 // @include     http://www.scp-wiki.net/forum*
 // @include     http://scp-wiki.wikidot.com/forum*
+// @include     http://05command.wikidot.com/forum*
 // @grant       GM_xmlhttpRequest
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
