@@ -26,15 +26,21 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
 
+// http://o5command-int.wikidot.com/staff-structure ?
+// http://scpfoundation.ru/system:members
+// http://scp-kr.wikidot.com/guide-for-newbies tab operator
+
 "use strict";
-var doCount = 0;
+var staff, doCount = 0;
 
 // page is loaded, let's do this
 getStaffList();
 
 // we also need to do this whenever the user changes page
-jQuery(".pager .target").on({ // I'm like 99% sure that Wikidot's init.combined.js includes jQuery
-	click: setStaffIds
+jQuery(document).on("click",".pager .target a",function(e) {
+	console.log("clicked");
+	doCount = 0;
+	setStaffIds(staff);
 });
 
 
@@ -66,7 +72,7 @@ function structureStaffList(staffText) {
 	var parser = new DOMParser();
 	var staffList = parser.parseFromString(staffText, "application/xml").getElementById('page-content');
 	// next thing to do is to compile a list of all of the staff members
-	var staff = [];
+	staff = [];
 	var staffType = "Staff Member";
 	// 4 tables:  admin, mod, opstaff, jstaff
 
@@ -134,7 +140,7 @@ function structureStaffList(staffText) {
 }
 
 // run through the fo
-function setStaffIds(staff) {
+function setStaffIds() {
 	var container;
 	if(document.getElementById('thread-container')) {
 		container = document.getElementById('thread-container');
@@ -196,5 +202,5 @@ function setStaffIds(staff) {
 	}
 	// repeat this a few times just so that we catch everything if the forum loads slowly
 	doCount++;
-	if(doCount < 10) setTimeout(function() {setStaffIds(staff)}, 500);
+	if(doCount < 10) setTimeout(function() {setStaffIds()}, 500);
 }
