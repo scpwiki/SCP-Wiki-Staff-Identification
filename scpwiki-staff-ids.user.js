@@ -38,7 +38,6 @@ getStaffList();
 
 // we also need to do this whenever the user changes page
 jQuery(document).on("click",".pager .target a",function(e) {
-	console.log("clicked");
 	doCount = 0;
 	setStaffIds(staff);
 });
