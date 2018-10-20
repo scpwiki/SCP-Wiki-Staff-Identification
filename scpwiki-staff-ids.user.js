@@ -26,10 +26,6 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
 
-// http://o5command-int.wikidot.com/staff-structure ?
-// http://scpfoundation.ru/system:members
-// http://scp-kr.wikidot.com/guide-for-newbies tab operator
-
 "use strict";
 var staff, doCount = 0;
 
@@ -138,7 +134,7 @@ function structureStaffList(staffText) {
 	setStaffIds(staff);
 }
 
-// run through the fo
+// run through the forum page and add the staff roles
 function setStaffIds() {
 	var container;
 	if(document.getElementById('thread-container')) {
