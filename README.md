@@ -1,2 +1,5 @@
 # SCP-Wiki-Staff-Identification
-Shows who's staff and what position they hold
+
+A [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) userscript that adds a line of text to forum posts by staff members to show you what position they hold.
+
+More information: http://scp-wiki.wikidot.com/usertools
