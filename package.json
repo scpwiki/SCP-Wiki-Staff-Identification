@@ -1,0 +1,22 @@
+{
+  "name": "scpwiki-staff-id",
+  "version": "2.1.0",
+  "description": "A [Tampermonkey](https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo) userscript that adds a line of text to forum posts by staff members to show you what position they hold.",
+  "main": "scpwiki-staff-ids.user.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scpwiki/SCP-Wiki-Staff-Identification.git"
+  },
+  "author": "Ross Williams",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/scpwiki/SCP-Wiki-Staff-Identification/issues"
+  },
+  "homepage": "https://github.com/scpwiki/SCP-Wiki-Staff-Identification#readme",
+  "devDependencies": {
+    "eslint": "^7.6.0"
+  }
+}
