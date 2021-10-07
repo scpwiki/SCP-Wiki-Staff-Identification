@@ -19,12 +19,17 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // ==UserScript==
 // @name        SCP-Wiki Staff Identification 2
 // @description Shows who's staff and what position they hold
-// @version     v2.1.1
+// @version     v2.1.2
 // @updateURL   https://github.com/scpwiki/SCP-Wiki-Staff-Identification/raw/master/scpwiki-staff-ids.user.js
 // @downloadURL https://github.com/scpwiki/SCP-Wiki-Staff-Identification/raw/master/scpwiki-staff-ids.user.js
+// @include     http://scpwiki.com/forum*
 // @include     http://www.scpwiki.com/forum*
 // @include     http://scp-wiki.wikidot.com/forum*
 // @include     http://05command.wikidot.com/forum*
+// @include     https://scpwiki.com/forum*
+// @include     https://www.scpwiki.com/forum*
+// @include     https://scp-wiki.wikidot.com/forum*
+// @include     https://05command.wikidot.com/forum*
 // @grant       GM_xmlhttpRequest
 // @grant       GM.xmlHttpRequest
 // ==/UserScript==
