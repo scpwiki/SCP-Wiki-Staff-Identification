@@ -41,7 +41,7 @@ var staff, doCount = 0;
 getStaffList();
 
 // we also need to do this whenever the user changes page
-jQuery(document).on("click",".pager .target a",function(e) {
+jQuery(document).on("click",".pager .target a",function() {
   doCount = 0;
   setStaffIds(staff);
 });
@@ -61,10 +61,10 @@ function getStaffList() {
     onload: function(response) {
       structureStaffList(response.responseText);
     },
-    onerror: function(response) {
+    onerror: function() {
       console.error("An error occurred while fetching staff data");
     },
-    ontimeout: function(response) {
+    ontimeout: function() {
       console.error("The request to fetch staff data timed out");
     }
   });

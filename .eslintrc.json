@@ -1,7 +1,9 @@
 {
     "env": {
         "browser": true,
-        "es2020": true
+        "es2020": true,
+        "greasemonkey": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
