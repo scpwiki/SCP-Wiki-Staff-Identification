@@ -1,7 +1,5 @@
 /*
 SCP-Wiki Staff Identification
-version 2.1
-2020-08-02
 
 --------------------------------------------------------------------
 This is a Greasemonkey user script.
@@ -19,7 +17,7 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // ==UserScript==
 // @name        SCP-Wiki Staff Identification 2
 // @description Shows who's staff and what position they hold
-// @version     v2.1.2
+// @version     v2.2.0
 // @updateURL   https://github.com/scpwiki/SCP-Wiki-Staff-Identification/raw/master/scpwiki-staff-ids.user.js
 // @downloadURL https://github.com/scpwiki/SCP-Wiki-Staff-Identification/raw/master/scpwiki-staff-ids.user.js
 // @include     http://scpwiki.com/forum*
