@@ -37,6 +37,7 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 "use strict";
 var staff,
   doCount = 0;
+var day = 1000 * 60 * 60 * 24;
 
 // page is loaded, let's do this
 getStaffList();
@@ -51,23 +52,35 @@ jQuery(document).on("click", ".pager .target a", function () {
 
 // fetch the whole list of staff from 05command
 function getStaffList() {
-  GM.xmlHttpRequest({
-    method: "GET",
-    url: "http://05command.wikidot.com/staff-list",
-    /*headers: {
-      "User-Agent": "Mozilla/5.0",  // If not specified, navigator.userAgent will be used.
-    },*/
-    timeout: 10000,
-    onload: function (response) {
-      structureStaffList(response.responseText);
-    },
-    onerror: function () {
-      console.error("An error occurred while fetching staff data");
-    },
-    ontimeout: function () {
-      console.error("The request to fetch staff data timed out");
-    },
-  });
+  var lastFetchedTimestamp = localStorage.getItem("scp-staff-ids-timestamp");
+  var lastFetchedResponse = localStorage.getItem("scp-staff-ids-response");
+  var useCachedResponse =
+    lastFetchedTimestamp != null &&
+    lastFetchedResponse != null &&
+    new Date(lastFetchedTimestamp).getTime() + day > new Date().getTime();
+
+  if (useCachedResponse) {
+    console.info("SCP Wiki Staff ID: Using cached staff list");
+    structureStaffList(lastFetchedResponse);
+  } else {
+    console.info("SCP Wiki Staff ID: Fetching new staff list");
+    GM.xmlHttpRequest({
+      method: "GET",
+      url: "http://05command.wikidot.com/staff-list",
+      timeout: 10000,
+      onload: function (response) {
+        localStorage.setItem("scp-staff-ids-timestamp", new Date());
+        localStorage.setItem("scp-staff-ids-response", response.responseText);
+        structureStaffList(response.responseText);
+      },
+      onerror: function () {
+        console.error("An error occurred while fetching staff data");
+      },
+      ontimeout: function () {
+        console.error("The request to fetch staff data timed out");
+      },
+    });
+  }
 }
 
 // rummage through the list of staff and twist it into a format that JS understands
