@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/scpwiki/SCP-Wiki-Staff-Identification#readme",
   "devDependencies": {
-    "eslint": "^7.6.0"
+    "eslint": "^7.6.0",
+    "prettier": "2.5.1"
   }
 }
