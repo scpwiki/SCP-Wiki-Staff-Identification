@@ -17,7 +17,7 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // ==UserScript==
 // @name        SCP-Wiki Staff Identification 2
 // @description Shows who's staff and what position they hold
-// @version     v2.2.0
+// @version     v2.2.1
 // @updateURL   https://github.com/scpwiki/SCP-Wiki-Staff-Identification/raw/master/scpwiki-staff-ids.user.js
 // @downloadURL https://github.com/scpwiki/SCP-Wiki-Staff-Identification/raw/master/scpwiki-staff-ids.user.js
 // @include     http://scpwiki.com/forum*
@@ -172,6 +172,7 @@ function setStaffIds() {
   } else {
     container = document.getElementsByClassName("thread-container")[0];
   }
+  if (!container) return;
 
   var infoSpans = container.getElementsByClassName("info");
   var userName = "";
