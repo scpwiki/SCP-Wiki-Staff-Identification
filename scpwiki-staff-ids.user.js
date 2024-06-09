@@ -30,6 +30,7 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // @include     https://05command.wikidot.com/forum*
 // @grant       GM_xmlhttpRequest
 // @grant       GM.xmlHttpRequest
+// @require     https://code.jquery.com/jquery-3.7.1.min.js
 // ==/UserScript==
 
 "use strict";
