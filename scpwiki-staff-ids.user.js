@@ -30,6 +30,7 @@ select "SCP-Wiki Staff Identification", and click Uninstall.
 // @include     https://05command.wikidot.com/forum*
 // @grant       GM_xmlhttpRequest
 // @grant       GM.xmlHttpRequest
+// @require     https://code.jquery.com/jquery-3.7.1.min.js
 // ==/UserScript==
 
 "use strict";
@@ -92,8 +93,12 @@ function structureStaffList(staffText) {
   var staffType = "Staff Member";
   // 4 tables:  admin, mod, opstaff, jstaff
 
-  for (let node = 0; node < staffList.childNodes.length; node++) {
-    var currNode = staffList.childNodes[node];
+  var elements = staffList.querySelectorAll(
+    ":scope > div > h1, :scope > div > div > table"
+  );
+
+  for (let node = 0; node < elements.length; node++) {
+    var currNode = elements[node];
 
     // if the current node is not a table, we don't care about it, but if it's a title then we can use it to get the current staff type instead of hardcoding that
     switch (currNode.nodeName.toLowerCase()) {
@@ -131,8 +136,6 @@ function structureStaffList(staffText) {
       var staffmember = {
         username: "",
         teams: [],
-        active: "Active",
-        captain: [],
         type: staffType,
       };
 
@@ -144,14 +147,17 @@ function structureStaffList(staffText) {
               columns[j].childNodes[0].childNodes[1].textContent;
             break;
           case 1: // teams
-            staffmember.teams = columns[j].textContent.split(", ");
+            staffmember.teams = columns[j].textContent
+              .split(", ")
+              .map(function (x) {
+                return x
+                  .replace(/ \[c]$/, " (Captain)")
+                  .replace(/ \[vc]$/, " (Vice Captain)");
+              })
+              .filter(function (x) {
+                return !/ \[ac.*]$/.test(x);
+              });
             if (staffmember.teams[0] === "-") staffmember.teams = [];
-            break;
-          case 3: // activity
-            staffmember.active = columns[j].textContent;
-            break;
-          case 5: // captain
-            staffmember.captain = columns[j].textContent.split(", ");
             break;
         }
       }
@@ -198,18 +204,6 @@ function setStaffIds() {
         if (userName.indexOf(staffName) !== -1) {
           // I want to format this as "Administrator - Disciplinary" or "Junior Staff - Technical" or "Operational Staff (Inactive)"
           staffId = "SCP Wiki - " + staff[y].type;
-
-          if (staff[y].active.toLowerCase() !== "active")
-            staffId += " (" + staff[y].active + ")";
-
-          if (staff[y].captain.length > 0) {
-            for (let i = 0; i < staff[y].captain.length; i++) {
-              for (let j = 0; j < staff[y].teams.length; j++) {
-                if (staff[y].captain[i] === staff[y].teams[j])
-                  staff[y].teams[j] += " (Captain)";
-              }
-            }
-          }
           if (staff[y].teams.length > 0)
             staffId += " - " + staff[y].teams.join(", ");
         }
